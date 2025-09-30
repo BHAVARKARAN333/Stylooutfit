@@ -65,6 +65,12 @@
                             <span class="dropdown-arrow">▼</span>
                         </button>
                         <div class="dropdown-menu" id="dropdownMenu">
+                            <a href="#" class="dropdown-item" id="mobileNotificationBtn">
+                                <span class="item-icon">🔔</span>
+                                Notifications
+                                <span class="notification-badge-inline">3</span>
+                            </a>
+                            <hr class="dropdown-divider" />
                             <a href="dashboard.html" class="dropdown-item">
                                 <span class="item-icon">📊</span>
                                 Dashboard
@@ -138,9 +144,18 @@
             });
         }
 
-        // Notification button
+        // Notification button (desktop)
         if (notificationBtn) {
             notificationBtn.addEventListener('click', function() {
+                alert('Notifications:\n\n• New outfit recommendations available\n• Your avatar is ready\n• Special offer: 20% off styling service');
+            });
+        }
+
+        // Mobile notification button (in dropdown)
+        const mobileNotificationBtn = document.getElementById('mobileNotificationBtn');
+        if (mobileNotificationBtn) {
+            mobileNotificationBtn.addEventListener('click', function(e) {
+                e.preventDefault();
                 alert('Notifications:\n\n• New outfit recommendations available\n• Your avatar is ready\n• Special offer: 20% off styling service');
             });
         }

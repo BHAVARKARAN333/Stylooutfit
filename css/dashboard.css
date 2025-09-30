@@ -606,11 +606,59 @@
         display: none;
     }
 
+    /* Hide notification button on mobile */
+    .notification-btn {
+        display: none !important;
+    }
+
     .welcome-section {
         padding: 1.5rem;
     }
 
     .dashboard-section {
         padding: 1.5rem;
+    }
+
+    #dashboard-page {
+        padding: 1rem 0;
+    }
+
+    .welcome-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-value {
+        font-size: 1.75rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-section {
+        padding: 1rem;
+    }
+
+    .dashboard-section {
+        padding: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .outfit-info h3 {
+        font-size: 0.95rem;
+    }
+
+    .user-avatar {
+        width: 32px;
+        height: 32px;
     }
 }

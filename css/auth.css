@@ -448,23 +448,49 @@
 
 @media (max-width: 640px) {
     #auth-page {
-        padding: 1rem 0;
+        padding: 0.5rem 0;
     }
 
     .auth-container {
         border-radius: 16px;
+        width: 100%;
     }
 
     .auth-forms {
-        padding: 2rem 1.5rem;
+        padding: 1.5rem 1rem;
     }
 
     .auth-branding {
         padding: 2rem 1.5rem;
+        min-height: 250px;
+    }
+
+    .branding-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .branding-content > p {
+        font-size: 0.95rem;
+    }
+
+    .features-list {
+        gap: 0.75rem;
+    }
+
+    .feature-item h3 {
+        font-size: 1rem;
+    }
+
+    .feature-item p {
+        font-size: 0.85rem;
     }
 
     .form-header h2 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+    }
+
+    .form-header p {
+        font-size: 0.9rem;
     }
 
     .form-row {
@@ -476,5 +502,38 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.75rem;
+    }
+
+    .form-input {
+        font-size: 0.95rem;
+        padding: 12px 14px;
+    }
+
+    .btn-full-width {
+        padding: 14px;
+        font-size: 0.95rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-branding {
+        padding: 1.5rem 1rem;
+        min-height: 200px;
+    }
+
+    .branding-content h1 {
+        font-size: 1.25rem;
+    }
+
+    .feature-icon {
+        font-size: 1.25rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.35rem;
     }
 }

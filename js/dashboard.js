@@ -19,41 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // User Profile Dropdown Toggle
-    const userProfileBtn = document.getElementById('userProfileBtn');
-    const userProfileDropdown = document.querySelector('.user-profile-dropdown');
-    
-    if (userProfileBtn && userProfileDropdown) {
-        userProfileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            userProfileDropdown.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!userProfileDropdown.contains(e.target)) {
-                userProfileDropdown.classList.remove('active');
-            }
-        });
-    }
-
-    // Logout Functionality
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Clear user data
-            localStorage.removeItem('styloUserData');
-            localStorage.removeItem('styloAuthToken');
-            
-            // Show logout message
-            alert('You have been logged out successfully!');
-            
-            // Redirect to home page
-            window.location.href = 'index.html';
-        });
-    }
+    // User Profile Dropdown and Logout are now handled by auth-state.js
+    // No need for duplicate code here
 
     // Like Button Toggle
     const likeButtons = document.querySelectorAll('.card-like-btn');
@@ -100,14 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Notification Button
-    const notificationBtn = document.querySelector('.notification-btn');
-    if (notificationBtn) {
-        notificationBtn.addEventListener('click', function() {
-            alert('Notifications:\n\n• New outfit recommendations available\n• Your avatar is ready\n• Special offer: 20% off styling service');
-            // In a real app, this would open a notifications panel
-        });
-    }
+    // Notification Button is now handled by auth-state.js
 
     // Quick Action Buttons Analytics
     const quickActionBtns = document.querySelectorAll('.quick-action-btn');
