@@ -1,6 +1,15 @@
 (function () {
+  // Set year in footer
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Log auth state for debugging
+  if (window.StyloAuth) {
+    console.log('Auth State:', window.StyloAuth.isLoggedIn() ? 'Logged In' : 'Logged Out');
+    if (window.StyloAuth.isLoggedIn()) {
+      console.log('User Data:', window.StyloAuth.getUserData());
+    }
+  }
 
   const alertUser = (message) => {
     // alert() ko comment kar diya hai taaki pop-ups na aayen
