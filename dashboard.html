@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — StyloOutfit</title>
+    <meta name="description" content="Your personal style dashboard with AI-powered recommendations and outfit collections." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="icon" href="data:," />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="StyloOutfit Home">
+                <img src="./assets/images/STYLOOUTFIT.svg" alt="StyloOutfit Logo"/>
+            </a>
+            <nav class="primary-nav" aria-label="Primary Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="avatar.html">Create Avatar</a></li>
+                    <li><a href="outfit.html">Try Outfits</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <div class="user-menu">
+                <button class="notification-btn" aria-label="Notifications">
+                    <span class="notification-icon">🔔</span>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile-dropdown">
+                    <button class="user-profile-btn" id="userProfileBtn">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="User Avatar" class="user-avatar" />
+                        <span class="user-name" id="userName">John Doe</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="dashboard.html" class="dropdown-item">
+                            <span class="item-icon">📊</span>
+                            Dashboard
+                        </a>
+                        <a href="avatar.html" class="dropdown-item">
+                            <span class="item-icon">👤</span>
+                            My Avatar
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <span class="item-icon">❤️</span>
+                            Saved Outfits
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <span class="item-icon">⚙️</span>
+                            Settings
+                        </a>
+                        <hr class="dropdown-divider" />
+                        <a href="index.html" class="dropdown-item" id="logoutBtn">
+                            <span class="item-icon">🚪</span>
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="dashboard-page">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <div class="welcome-content">
+                    <h1>Welcome back, <span id="userNameDisplay">John</span>! 👋</h1>
+                    <p>Here's what's trending for you today</p>
+                </div>
+                <div class="quick-actions">
+                    <a href="avatar.html" class="quick-action-btn">
+                        <span class="action-icon">👤</span>
+                        <span>Create Avatar</span>
+                    </a>
+                    <a href="outfit.html" class="quick-action-btn">
+                        <span class="action-icon">👔</span>
+                        <span>Try Outfits</span>
+                    </a>
+                    <a href="services.html" class="quick-action-btn">
+                        <span class="action-icon">✨</span>
+                        <span>Get Styled</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Stats Cards -->
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">👔</div>
+                    <div class="stat-info">
+                        <div class="stat-value">24</div>
+                        <div class="stat-label">Outfits Tried</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">❤️</div>
+                    <div class="stat-info">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Saved Favorites</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <div class="stat-value">8</div>
+                        <div class="stat-label">Style Goals</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-info">
+                        <div class="stat-value">95%</div>
+                        <div class="stat-label">Style Match</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Content Grid -->
+            <div class="dashboard-grid">
+                <!-- Left Column -->
+                <div class="dashboard-main">
+                    <!-- AI Recommendations -->
+                    <section class="dashboard-section">
+                        <div class="section-header">
+                            <h2>✨ AI Recommendations for You</h2>
+                            <a href="outfit.html" class="view-all-link">View All →</a>
+                        </div>
+                        <div class="recommendations-grid">
+                            <div class="outfit-card">
+                                <div class="outfit-image">
+                                    <img src="https://picsum.photos/seed/rec1/400/600" alt="Recommended outfit" />
+                                    <button class="card-like-btn" aria-label="Like">❤️</button>
+                                    <span class="match-badge">98% Match</span>
+                                </div>
+                                <div class="outfit-info">
+                                    <h3>Summer Casual Chic</h3>
+                                    <p class="outfit-occasion">Perfect for: Weekend Brunch</p>
+                                    <button class="btn btn-sm btn-primary">Try On Avatar</button>
+                                </div>
+                            </div>
+                            <div class="outfit-card">
+                                <div class="outfit-image">
+                                    <img src="https://picsum.photos/seed/rec2/400/600" alt="Recommended outfit" />
+                                    <button class="card-like-btn" aria-label="Like">❤️</button>
+                                    <span class="match-badge">95% Match</span>
+                                </div>
+                                <div class="outfit-info">
+                                    <h3>Business Professional</h3>
+                                    <p class="outfit-occasion">Perfect for: Office Meeting</p>
+                                    <button class="btn btn-sm btn-primary">Try On Avatar</button>
+                                </div>
+                            </div>
+                            <div class="outfit-card">
+                                <div class="outfit-image">
+                                    <img src="https://picsum.photos/seed/rec3/400/600" alt="Recommended outfit" />
+                                    <button class="card-like-btn" aria-label="Like">❤️</button>
+                                    <span class="match-badge">92% Match</span>
+                                </div>
+                                <div class="outfit-info">
+                                    <h3>Evening Elegance</h3>
+                                    <p class="outfit-occasion">Perfect for: Date Night</p>
+                                    <button class="btn btn-sm btn-primary">Try On Avatar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Recent Activity -->
+                    <section class="dashboard-section">
+                        <div class="section-header">
+                            <h2>📅 Recent Activity</h2>
+                        </div>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">👔</div>
+                                <div class="activity-content">
+                                    <p class="activity-text">You tried <strong>Street Style Look</strong></p>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">❤️</div>
+                                <div class="activity-content">
+                                    <p class="activity-text">Saved <strong>Summer Casual Collection</strong></p>
+                                    <span class="activity-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">👤</div>
+                                <div class="activity-content">
+                                    <p class="activity-text">Updated your <strong>3D Avatar</strong></p>
+                                    <span class="activity-time">Yesterday</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🎯</div>
+                                <div class="activity-content">
+                                    <p class="activity-text">Completed <strong>Style Quiz</strong></p>
+                                    <span class="activity-time">2 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right Sidebar -->
+                <aside class="dashboard-sidebar">
+                    <!-- Style Profile -->
+                    <section class="sidebar-card">
+                        <h3>Your Style Profile</h3>
+                        <div class="style-tags">
+                            <span class="style-tag">Casual</span>
+                            <span class="style-tag">Modern</span>
+                            <span class="style-tag">Minimalist</span>
+                            <span class="style-tag">Sporty</span>
+                        </div>
+                        <button class="btn btn-outline btn-sm btn-full-width">Update Preferences</button>
+                    </section>
+
+                    <!-- Saved Collections -->
+                    <section class="sidebar-card">
+                        <h3>Saved Collections</h3>
+                        <div class="saved-collections">
+                            <div class="collection-item">
+                                <img src="https://picsum.photos/seed/col1/200/200" alt="Collection" />
+                                <div class="collection-info">
+                                    <h4>Summer Vibes</h4>
+                                    <p>8 outfits</p>
+                                </div>
+                            </div>
+                            <div class="collection-item">
+                                <img src="https://picsum.photos/seed/col2/200/200" alt="Collection" />
+                                <div class="collection-info">
+                                    <h4>Work Essentials</h4>
+                                    <p>12 outfits</p>
+                                </div>
+                            </div>
+                            <div class="collection-item">
+                                <img src="https://picsum.photos/seed/col3/200/200" alt="Collection" />
+                                <div class="collection-info">
+                                    <h4>Party Ready</h4>
+                                    <p>6 outfits</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all-link">View All Collections →</a>
+                    </section>
+
+                    <!-- Upcoming Events -->
+                    <section class="sidebar-card">
+                        <h3>Upcoming Events</h3>
+                        <div class="events-list">
+                            <div class="event-item">
+                                <div class="event-date">
+                                    <span class="date-day">15</span>
+                                    <span class="date-month">Oct</span>
+                                </div>
+                                <div class="event-info">
+                                    <h4>Wedding Ceremony</h4>
+                                    <p>Get outfit suggestions</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">
+                                    <span class="date-day">22</span>
+                                    <span class="date-month">Oct</span>
+                                </div>
+                                <div class="event-info">
+                                    <h4>Business Conference</h4>
+                                    <p>Professional attire needed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-sm btn-full-width">Add Event</button>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> StyloOutfit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

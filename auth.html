@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In / Sign Up — StyloOutfit</title>
+    <meta name="description" content="Join StyloOutfit to access personalized AI-powered styling recommendations and create your 3D avatar." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/auth.css" />
+    <link rel="icon" href="data:," />
+    
+    <!-- Google OAuth Script -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo" aria-label="StyloOutfit Home">
+                <img src="./assets/images/STYLOOUTFIT.svg" alt="StyloOutfit Logo"/>
+            </a>
+            <nav class="primary-nav" aria-label="Primary Navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="avatar.html">Create Avatar</a></li>
+                    <li><a href="outfit.html">Try Outfits</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <a href="auth.html" class="nav-cta">Get Started</a>
+        </div>
+    </header>
+
+    <main id="auth-page">
+        <div class="auth-container">
+            <!-- Left Side: Branding & Info -->
+            <div class="auth-branding">
+                <div class="branding-content">
+                    <h1>Welcome to StyloOutfit</h1>
+                    <p>Transform your style with AI-powered outfit recommendations and personalized 3D avatars.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon">✨</span>
+                            <div>
+                                <h3>AI-Powered Styling</h3>
+                                <p>Get personalized outfit recommendations</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">👤</span>
+                            <div>
+                                <h3>3D Avatar Creation</h3>
+                                <p>Try outfits on your virtual twin</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎯</span>
+                            <div>
+                                <h3>Style for Every Occasion</h3>
+                                <p>From casual to formal, we've got you covered</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Auth Forms -->
+            <div class="auth-forms">
+                <div class="form-wrapper">
+                    <!-- Sign In Form -->
+                    <div class="auth-form-container" id="signInForm">
+                        <div class="form-header">
+                            <h2>Sign In</h2>
+                            <p>Welcome back! Please enter your details.</p>
+                        </div>
+
+                        <form id="loginForm" novalidate>
+                            <div class="form-group">
+                                <label for="loginEmail">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="loginEmail" 
+                                    class="form-input" 
+                                    placeholder="Enter your email"
+                                    required 
+                                />
+                                <span class="error-message" id="loginEmailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <div class="password-input-wrapper">
+                                    <input 
+                                        type="password" 
+                                        id="loginPassword" 
+                                        class="form-input" 
+                                        placeholder="Enter your password"
+                                        required 
+                                    />
+                                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                        <span class="eye-icon">👁️</span>
+                                    </button>
+                                </div>
+                                <span class="error-message" id="loginPasswordError"></span>
+                            </div>
+
+                            <div class="form-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="rememberMe" />
+                                    <span>Remember me</span>
+                                </label>
+                                <a href="#" class="forgot-password">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full-width">Sign In</button>
+
+                            <div class="divider">
+                                <span>OR</span>
+                            </div>
+
+                            <div class="social-login">
+                                <div id="googleSignInButton"></div>
+                            </div>
+                        </form>
+
+                        <div class="form-footer">
+                            <p>Don't have an account? <button type="button" class="switch-form-btn" id="showSignUp">Sign up</button></p>
+                        </div>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <div class="auth-form-container hidden" id="signUpForm">
+                        <div class="form-header">
+                            <h2>Create Account</h2>
+                            <p>Join us and start your style journey today.</p>
+                        </div>
+
+                        <form id="registerForm" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input 
+                                        type="text" 
+                                        id="firstName" 
+                                        class="form-input" 
+                                        placeholder="First name"
+                                        required 
+                                    />
+                                    <span class="error-message" id="firstNameError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input 
+                                        type="text" 
+                                        id="lastName" 
+                                        class="form-input" 
+                                        placeholder="Last name"
+                                        required 
+                                    />
+                                    <span class="error-message" id="lastNameError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registerEmail">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="registerEmail" 
+                                    class="form-input" 
+                                    placeholder="Enter your email"
+                                    required 
+                                />
+                                <span class="error-message" id="registerEmailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="registerPassword">Password</label>
+                                <div class="password-input-wrapper">
+                                    <input 
+                                        type="password" 
+                                        id="registerPassword" 
+                                        class="form-input" 
+                                        placeholder="Create a password"
+                                        required 
+                                    />
+                                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                        <span class="eye-icon">👁️</span>
+                                    </button>
+                                </div>
+                                <span class="password-hint">At least 8 characters with uppercase, lowercase, and number</span>
+                                <span class="error-message" id="registerPasswordError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="password-input-wrapper">
+                                    <input 
+                                        type="password" 
+                                        id="confirmPassword" 
+                                        class="form-input" 
+                                        placeholder="Confirm your password"
+                                        required 
+                                    />
+                                    <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                        <span class="eye-icon">👁️</span>
+                                    </button>
+                                </div>
+                                <span class="error-message" id="confirmPasswordError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="agreeTerms" required />
+                                    <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+                                </label>
+                                <span class="error-message" id="agreeTermsError"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full-width">Create Account</button>
+
+                            <div class="divider">
+                                <span>OR</span>
+                            </div>
+
+                            <div class="social-login">
+                                <div id="googleSignUpButton"></div>
+                            </div>
+                        </form>
+
+                        <div class="form-footer">
+                            <p>Already have an account? <button type="button" class="switch-form-btn" id="showSignIn">Sign in</button></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span id="year"></span> StyloOutfit. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Load Google Identity Services -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

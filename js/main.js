@@ -15,12 +15,13 @@
     });
   }
 
-  const navCta = document.getElementById('navCta');
-  if (navCta) {
-    navCta.addEventListener('click', function () {
-      alertUser('Welcome to StyloOutfit! Get started by creating your avatar.');
-    });
-  }
+  // Nav CTA is now a link, no need for click handler
+  // const navCta = document.getElementById('navCta');
+  // if (navCta) {
+  //   navCta.addEventListener('click', function () {
+  //     alertUser('Welcome to StyloOutfit! Get started by creating your avatar.');
+  //   });
+  // }
 
   // --- SAHI PROMO SLIDER CODE ---
   const initPromoSlider = () => {
