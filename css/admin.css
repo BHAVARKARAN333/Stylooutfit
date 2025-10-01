@@ -49,6 +49,7 @@
     overflow-y: auto;
     z-index: 1000;
     transition: transform 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .admin-sidebar.hidden {
@@ -935,8 +936,16 @@
 }
 
 @media (max-width: 768px) {
+    .admin-header {
+        padding: 1rem;
+    }
+
     .admin-header h1 {
-        font-size: 1.25rem;
+        font-size: 1.125rem;
+    }
+
+    .admin-section {
+        padding: 1rem;
     }
 
     .section-header {
@@ -956,6 +965,11 @@
 
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
     }
 
     .dashboard-charts {
@@ -963,19 +977,150 @@
     }
 
     .images-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
     }
 
     .outfits-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .content-tabs {
         overflow-x: auto;
         flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .content-tab {
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
     }
 
     .modal-content {
         width: 95%;
+        max-height: 85vh;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .modal-footer {
+        padding: 1rem;
+        flex-direction: column-reverse;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+
+    /* Table responsive */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .admin-table {
+        font-size: 0.875rem;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 0.75rem 0.5rem;
+        white-space: nowrap;
+    }
+
+    /* Settings grid */
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Upload area */
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    /* Image categories */
+    .image-categories {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+    }
+
+    .category-btn {
+        white-space: nowrap;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-header h1 {
+        font-size: 1rem;
+    }
+
+    .admin-actions {
+        gap: 0.5rem;
+    }
+
+    .btn-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .stat-details h3 {
+        font-size: 1.5rem;
+    }
+
+    .images-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .image-preview {
+        height: 150px;
+    }
+
+    .outfit-image-admin {
+        height: 280px;
+    }
+
+    .form-input,
+    .search-input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .admin-sidebar {
+        width: 260px;
+    }
+
+    .admin-logo {
+        padding: 1.5rem 1rem;
+    }
+
+    .admin-logo h2 {
+        font-size: 1.125rem;
+    }
+
+    .admin-nav-link {
+        padding: 0.875rem 1rem;
+        font-size: 0.875rem;
+    }
+
+    .nav-icon {
+        font-size: 1.25rem;
     }
 }

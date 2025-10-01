@@ -1,0 +1,52 @@
+╔══════════════════════════════════════════════════════════════╗
+║           STYLOOUTFIT ADMIN PANEL ACCESS INFO                ║
+╚══════════════════════════════════════════════════════════════╝
+
+🌐 ADMIN LOGIN URL:
+   https://stylooutfit.in/admin-login.html
+
+🔑 DEFAULT ADMIN KEYS (Choose any one):
+   1. admin@stylo2025
+   2. stylooutfit@admin
+   3. admin123
+
+📱 MOBILE FRIENDLY:
+   ✅ Fully responsive design
+   ✅ Touch-friendly buttons
+   ✅ Swipe to close sidebar
+   ✅ Auto-close on navigation
+
+🔐 SECURITY FEATURES:
+   ✅ Password protection
+   ✅ 24-hour session timeout
+   ✅ Auto-logout on session expire
+   ✅ Secure admin key verification
+
+📊 ADMIN PANEL FEATURES:
+   ✅ Dashboard with stats
+   ✅ Users management
+   ✅ Image gallery
+   ✅ Outfits management
+   ✅ Website content editor
+   ✅ Settings & backup
+
+⚡ QUICK ACCESS STEPS:
+   1. Open: https://stylooutfit.in/admin-login.html
+   2. Enter admin key: admin@stylo2025
+   3. Click "Access Admin Panel"
+   4. Done! ✨
+
+📝 NOTES:
+   - Session expires after 24 hours
+   - Mobile users: Use hamburger menu (☰) to navigate
+   - Logout clears admin session
+   - All changes are saved automatically
+
+🔄 TO CHANGE ADMIN KEY:
+   Edit file: js/admin.js
+   Find: ADMIN_KEYS array
+   Add your custom key
+
+═══════════════════════════════════════════════════════════════
+
+For support: Check README_ADMIN.md for detailed documentation

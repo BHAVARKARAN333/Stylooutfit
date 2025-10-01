@@ -13,17 +13,45 @@ let deleteCallback = null;
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Check admin authentication first
+    if (!checkAdminAuth()) {
+        window.location.href = 'admin-login.html';
+        return;
+    }
+    
     initializeAdmin();
     setupEventListeners();
     loadDashboardData();
 });
 
+// Check admin authentication
+function checkAdminAuth() {
+    const isAuthenticated = localStorage.getItem('adminAuthenticated');
+    const loginTime = localStorage.getItem('adminLoginTime');
+    
+    if (!isAuthenticated || !loginTime) {
+        return false;
+    }
+    
+    // Check if session expired (24 hours)
+    const hoursPassed = (Date.now() - parseInt(loginTime)) / (1000 * 60 * 60);
+    if (hoursPassed >= 24) {
+        localStorage.removeItem('adminAuthenticated');
+        localStorage.removeItem('adminLoginTime');
+        return false;
+    }
+    
+    return true;
+}
+
 function initializeAdmin() {
-    // Check if admin is logged in (for now, we'll use a simple check)
+    // Get user data for display
     const userData = JSON.parse(localStorage.getItem('styloUserData') || '{}');
     
     if (userData.firstName) {
         document.getElementById('adminName').textContent = userData.firstName;
+    } else {
+        document.getElementById('adminName').textContent = 'Admin';
     }
     
     // Load initial section
@@ -41,6 +69,10 @@ function setupEventListeners() {
             e.preventDefault();
             const section = link.dataset.section;
             showSection(section);
+            // Close mobile sidebar after navigation
+            if (window.innerWidth <= 1024) {
+                document.querySelector('.admin-sidebar').classList.remove('active');
+            }
         });
     });
 
@@ -49,6 +81,19 @@ function setupEventListeners() {
     const sidebar = document.querySelector('.admin-sidebar');
     menuToggle?.addEventListener('click', () => {
         sidebar.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1024) {
+            const sidebar = document.querySelector('.admin-sidebar');
+            const menuToggle = document.getElementById('menuToggle');
+            if (sidebar.classList.contains('active') && 
+                !sidebar.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        }
     });
 
     // Logout
@@ -770,9 +815,14 @@ function handleConfirmDelete() {
 
 function handleLogout() {
     if (confirm('Are you sure you want to logout?')) {
+        // Clear admin session
+        localStorage.removeItem('adminAuthenticated');
+        localStorage.removeItem('adminLoginTime');
+        // Clear user data
         localStorage.removeItem('styloUserData');
         localStorage.removeItem('styloAuthToken');
-        window.location.href = 'auth.html';
+        // Redirect to admin login
+        window.location.href = 'admin-login.html';
     }
 }
 
