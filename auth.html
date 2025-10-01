@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In / Sign Up — StyloOutfit</title>
-    <meta name="description" content="Join StyloOutfit to access personalized AI-powered styling recommendations and create your 3D avatar." />
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BJ22N9EDJ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-3BJ22N9EDJ');
-    </script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/auth.css" />
-    <link rel="icon" href="data:," />
-    
-    <!-- Google OAuth Script -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-</head>
-<body>
-    <header class="site-header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo" aria-label="StyloOutfit Home">
-                <img src="./assets/images/STYLOOUTFIT.svg" alt="StyloOutfit Logo"/>
-            </a>
-            <nav class="primary-nav" aria-label="Primary Navigation">
+l="Primary Navigation">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="avatar.html">Create Avatar</a></li>
@@ -225,7 +192,7 @@
                             <div class="form-group">
                                 <label class="checkbox-label">
                                     <input type="checkbox" id="agreeTerms" required />
-                                    <span>I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a></span>
+                                    <span>I agree to the <a href="terms.html" class="link" target="_blank">Terms of Service</a> and <a href="privacy.html" class="link" target="_blank">Privacy Policy</a></span>
                                 </label>
                                 <span class="error-message" id="agreeTermsError"></span>
                             </div>
@@ -244,6 +211,34 @@
                         <div class="form-footer">
                             <p>Already have an account? <button type="button" class="switch-form-btn" id="showSignIn">Sign in</button></p>
                         </div>
+                    </div>
+
+                    <!-- Forgot Password Form -->
+                    <div class="auth-form-container hidden" id="forgotPasswordForm">
+                        <div class="form-header">
+                            <h2>Reset Password</h2>
+                            <p>Enter your email and we'll send you a reset link.</p>
+                        </div>
+
+                        <form id="resetPasswordForm" novalidate>
+                            <div class="form-group">
+                                <label for="resetEmail">Email</label>
+                                <input 
+                                    type="email" 
+                                    id="resetEmail" 
+                                    class="form-input" 
+                                    placeholder="Enter your email"
+                                    required 
+                                />
+                                <span class="error-message" id="resetEmailError"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full-width">Send Reset Link</button>
+
+                            <div class="form-footer" style="margin-top: 20px;">
+                                <p>Remember your password? <button type="button" class="switch-form-btn" id="backToSignIn">Sign in</button></p>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

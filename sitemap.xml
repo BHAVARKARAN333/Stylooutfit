@@ -61,4 +61,20 @@
     <priority>0.5</priority>
   </url>
 
+  <!-- Terms & Conditions -->
+  <url>
+    <loc>https://stylooutfit.in/terms.html</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://stylooutfit.in/privacy.html</loc>
+    <lastmod>2025-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
 </urlset>
