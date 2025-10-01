@@ -1,0 +1,47 @@
+# StyloOutfit - AI Outfit Matcher & Virtual Stylist
+# https://stylooutfit.in
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /avatar.html
+Allow: /outfit.html
+Allow: /services.html
+Allow: /about.html
+Allow: /auth.html
+Allow: /dashboard.html
+Allow: /css/
+Allow: /js/
+Allow: /assets/
+
+# Block admin pages from search engines
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /server/
+
+# Block sensitive files
+Disallow: /*.json$
+Disallow: /*.txt$
+Disallow: /*.md$
+
+# Sitemap location
+Sitemap: https://stylooutfit.in/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
