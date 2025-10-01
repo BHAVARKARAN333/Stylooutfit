@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - StyloOutfit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+        <div class="admin-logo">
+            <img src="./assets/images/STYLOOUTFIT.svg" alt="StyloOutfit Logo"/>
+            <h2>Admin Panel</h2>
+        </div>
+        
+        <nav class="admin-nav">
+            <a href="#dashboard" class="admin-nav-link active" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="#users" class="admin-nav-link" data-section="users">
+                <span class="nav-icon">👥</span>
+                <span>Users Management</span>
+            </a>
+            <a href="#images" class="admin-nav-link" data-section="images">
+                <span class="nav-icon">🖼️</span>
+                <span>Image Gallery</span>
+            </a>
+            <a href="#outfits" class="admin-nav-link" data-section="outfits">
+                <span class="nav-icon">👔</span>
+                <span>Outfits</span>
+            </a>
+            <a href="#content" class="admin-nav-link" data-section="content">
+                <span class="nav-icon">📝</span>
+                <span>Website Content</span>
+            </a>
+            <a href="#settings" class="admin-nav-link" data-section="settings">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="admin-user-info">
+            <div class="admin-avatar">👤</div>
+            <div class="admin-user-details">
+                <p class="admin-user-name" id="adminName">Admin</p>
+                <button class="btn-logout" id="adminLogout">Logout</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+        <!-- Top Bar -->
+        <header class="admin-header">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <h1 id="pageTitle">Dashboard</h1>
+            <div class="admin-actions">
+                <button class="btn-icon" id="refreshBtn" title="Refresh">🔄</button>
+                <a href="index.html" class="btn-icon" title="View Website" target="_blank">🌐</a>
+            </div>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section class="admin-section active" id="section-dashboard">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-details">
+                        <h3 id="totalUsers">0</h3>
+                        <p>Total Users</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🖼️</div>
+                    <div class="stat-details">
+                        <h3 id="totalImages">0</h3>
+                        <p>Total Images</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👔</div>
+                    <div class="stat-details">
+                        <h3 id="totalOutfits">0</h3>
+                        <p>Total Outfits</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div class="stat-details">
+                        <h3 id="todayLogins">0</h3>
+                        <p>Today's Logins</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-charts">
+                <div class="chart-card">
+                    <h3>Recent Activity</h3>
+                    <div id="recentActivity" class="activity-list">
+                        <p class="loading">Loading...</p>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h3>Quick Stats</h3>
+                    <div class="quick-stats">
+                        <div class="quick-stat-item">
+                            <span>Google Logins:</span>
+                            <strong id="googleLogins">0</strong>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span>Manual Logins:</span>
+                            <strong id="manualLogins">0</strong>
+                        </div>
+                        <div class="quick-stat-item">
+                            <span>Active Today:</span>
+                            <strong id="activeToday">0</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Management Section -->
+        <section class="admin-section" id="section-users">
+            <div class="section-header">
+                <h2>Users Management</h2>
+                <div class="section-actions">
+                    <input type="search" id="userSearch" placeholder="Search users..." class="search-input">
+                    <button class="btn btn-primary" id="exportUsers">Export CSV</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="admin-table" id="usersTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Login Method</th>
+                            <th>Joined Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody">
+                        <tr>
+                            <td colspan="6" class="loading">Loading users...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section class="admin-section" id="section-images">
+            <div class="section-header">
+                <h2>Image Gallery Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" id="uploadImageBtn">
+                        <span>📤 Upload Images</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="image-categories">
+                <button class="category-btn active" data-category="all">All Images</button>
+                <button class="category-btn" data-category="hero">Hero Banners</button>
+                <button class="category-btn" data-category="outfits">Outfit Images</button>
+                <button class="category-btn" data-category="gallery">Gallery</button>
+                <button class="category-btn" data-category="promo">Promo Sliders</button>
+            </div>
+
+            <div class="images-grid" id="imagesGrid">
+                <p class="loading">Loading images...</p>
+            </div>
+
+            <!-- Upload Modal -->
+            <div class="modal" id="uploadModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Upload Images</h3>
+                        <button class="modal-close" id="closeUploadModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">📤</div>
+                            <p>Drag & drop images here or click to browse</p>
+                            <input type="file" id="imageInput" multiple accept="image/*" hidden>
+                            <button class="btn btn-outline" id="browseBtn">Browse Files</button>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="imageCategory" class="form-input">
+                                <option value="hero">Hero Banner</option>
+                                <option value="outfits">Outfit Image</option>
+                                <option value="gallery">Gallery</option>
+                                <option value="promo">Promo Slider</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL (or upload file above)</label>
+                            <input type="url" id="imageUrl" class="form-input" placeholder="https://example.com/image.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label>Alt Text</label>
+                            <input type="text" id="imageAlt" class="form-input" placeholder="Description for accessibility">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" id="cancelUpload">Cancel</button>
+                        <button class="btn btn-primary" id="saveImage">Save Image</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Outfits Section -->
+        <section class="admin-section" id="section-outfits">
+            <div class="section-header">
+                <h2>Outfits Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" id="addOutfitBtn">+ Add New Outfit</button>
+                </div>
+            </div>
+
+            <div class="outfits-grid" id="outfitsGrid">
+                <p class="loading">Loading outfits...</p>
+            </div>
+
+            <!-- Add/Edit Outfit Modal -->
+            <div class="modal" id="outfitModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="outfitModalTitle">Add New Outfit</h3>
+                        <button class="modal-close" id="closeOutfitModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Outfit Name</label>
+                            <input type="text" id="outfitName" class="form-input" placeholder="e.g., Summer Casual Look">
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="url" id="outfitImage" class="form-input" placeholder="https://example.com/outfit.jpg">
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="outfitCategory" class="form-input">
+                                <option value="casual">Casual</option>
+                                <option value="formal">Formal</option>
+                                <option value="party">Party</option>
+                                <option value="sports">Sports</option>
+                                <option value="ethnic">Ethnic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Occasion</label>
+                            <input type="text" id="outfitOccasion" class="form-input" placeholder="e.g., Weekend Brunch">
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="outfitDescription" class="form-input" rows="3" placeholder="Describe the outfit..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline" id="cancelOutfit">Cancel</button>
+                        <button class="btn btn-primary" id="saveOutfit">Save Outfit</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Website Content Section -->
+        <section class="admin-section" id="section-content">
+            <div class="section-header">
+                <h2>Website Content Management</h2>
+            </div>
+
+            <div class="content-tabs">
+                <button class="content-tab active" data-tab="hero">Hero Section</button>
+                <button class="content-tab" data-tab="promo">Promo Sliders</button>
+                <button class="content-tab" data-tab="stats">Stats</button>
+                <button class="content-tab" data-tab="footer">Footer</button>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="content-panel active" id="panel-hero">
+                <h3>Hero Section Content</h3>
+                <div class="form-group">
+                    <label>Badge Text</label>
+                    <input type="text" id="heroBadge" class="form-input" value="AI-Powered Styling">
+                </div>
+                <div class="form-group">
+                    <label>Main Title</label>
+                    <input type="text" id="heroTitle" class="form-input" value="Your Personal Style Revolution">
+                </div>
+                <div class="form-group">
+                    <label>Subtitle</label>
+                    <textarea id="heroSubtitle" class="form-input" rows="2">Discover your perfect style with our AI-powered outfit recommendations, curated by professional stylists just for you.</textarea>
+                </div>
+                <div class="form-group">
+                    <label>CTA Button Text</label>
+                    <input type="text" id="heroCTA" class="form-input" value="Create Your 3D Avatar & Try Outfits →">
+                </div>
+                <button class="btn btn-primary" id="saveHeroContent">Save Changes</button>
+            </div>
+
+            <!-- Promo Sliders Content -->
+            <div class="content-panel" id="panel-promo">
+                <h3>Promo Slider Management</h3>
+                <div id="promoSlidesList">
+                    <!-- Will be populated dynamically -->
+                </div>
+                <button class="btn btn-primary" id="addPromoSlide">+ Add Slide</button>
+            </div>
+
+            <!-- Stats Content -->
+            <div class="content-panel" id="panel-stats">
+                <h3>Homepage Statistics</h3>
+                <div class="stats-editor">
+                    <div class="form-group">
+                        <label>Happy Clients</label>
+                        <input type="text" id="statClients" class="form-input" value="10k+">
+                    </div>
+                    <div class="form-group">
+                        <label>Styled Outfits</label>
+                        <input type="text" id="statOutfits" class="form-input" value="50k+">
+                    </div>
+                    <div class="form-group">
+                        <label>User Rating</label>
+                        <input type="text" id="statRating" class="form-input" value="4.9★">
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="saveStats">Save Changes</button>
+            </div>
+
+            <!-- Footer Content -->
+            <div class="content-panel" id="panel-footer">
+                <h3>Footer Content</h3>
+                <div class="form-group">
+                    <label>Copyright Text</label>
+                    <input type="text" id="footerText" class="form-input" value="© 2025 StyloOutfit. All rights reserved.">
+                </div>
+                <button class="btn btn-primary" id="saveFooter">Save Changes</button>
+            </div>
+        </section>
+
+        <!-- Settings Section -->
+        <section class="admin-section" id="section-settings">
+            <div class="section-header">
+                <h2>Admin Settings</h2>
+            </div>
+
+            <div class="settings-grid">
+                <div class="settings-card">
+                    <h3>API Configuration</h3>
+                    <div class="form-group">
+                        <label>Backend URL</label>
+                        <input type="url" id="backendUrl" class="form-input" value="https://stylooutfit-backend.onrender.com/api" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>API Status</label>
+                        <div class="api-status">
+                            <span class="status-indicator" id="apiStatus">🟢</span>
+                            <span id="apiStatusText">Connected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Database Info</h3>
+                    <div class="form-group">
+                        <label>Database</label>
+                        <input type="text" class="form-input" value="MongoDB Atlas" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Collection</label>
+                        <input type="text" class="form-input" value="stylooutfit" readonly>
+                    </div>
+                    <button class="btn btn-outline" id="testConnection">Test Connection</button>
+                </div>
+
+                <div class="settings-card">
+                    <h3>Admin Actions</h3>
+                    <button class="btn btn-outline btn-full-width" id="clearCache">Clear Cache</button>
+                    <button class="btn btn-outline btn-full-width" id="backupData">Backup Data</button>
+                    <button class="btn btn-danger btn-full-width" id="resetDemo">Reset Demo Data</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h3>Confirm Delete</h3>
+                <button class="modal-close" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="deleteMessage">Are you sure you want to delete this item?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelDelete">Cancel</button>
+                <button class="btn btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

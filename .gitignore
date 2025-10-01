@@ -7,9 +7,10 @@ server/
 # PowerShell scripts
 *.ps1
 
-# Documentation files
+# Documentation files (exclude specific files)
 *_SUMMARY.md
 *_GUIDE.md
+!README_ADMIN.md
 
 # Dependencies
 node_modules/
