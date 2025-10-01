@@ -1,3 +1,16 @@
+# Server files (backend should not be deployed to Netlify)
+server/
+
+# Batch files
+*.bat
+
+# PowerShell scripts
+*.ps1
+
+# Documentation files
+*_SUMMARY.md
+*_GUIDE.md
+
 # Dependencies
 node_modules/
 package-lock.json
