@@ -62,38 +62,39 @@ function initializeGoogleSignIn() {
 }
 
 // Handle Google Sign-In Response
-function handleGoogleSignIn(response) {
+async function handleGoogleSignIn(response) {
     try {
         // Decode the JWT token to get user info
         const userInfo = parseJwt(response.credential);
         
         console.log('Google Sign-In successful:', userInfo);
         
-        // Store user data in localStorage
-        const userData = {
+        // Send to backend API
+        const apiResponse = await apiCall(API_CONFIG.ENDPOINTS.GOOGLE_AUTH, 'POST', {
             email: userInfo.email,
+            googleId: userInfo.sub,
             firstName: userInfo.given_name || userInfo.name.split(' ')[0],
             lastName: userInfo.family_name || userInfo.name.split(' ').slice(1).join(' '),
-            picture: userInfo.picture,
-            googleId: userInfo.sub,
-            loginMethod: 'google',
-            loginTime: new Date().toISOString()
-        };
+            picture: userInfo.picture
+        });
         
-        localStorage.setItem('styloUserData', JSON.stringify(userData));
-        localStorage.setItem('styloAuthToken', 'google-token-' + Date.now());
-        
-        // Show success message
-        alert(`Welcome ${userData.firstName}! Redirecting to your dashboard...`);
-        
-        // Redirect to dashboard
-        setTimeout(() => {
-            window.location.href = 'dashboard.html';
-        }, 500);
+        if (apiResponse.success) {
+            // Store user data and token
+            localStorage.setItem('styloUserData', JSON.stringify(apiResponse.user));
+            localStorage.setItem('styloAuthToken', apiResponse.token);
+            
+            // Show success message
+            alert(`Welcome ${apiResponse.user.firstName}! Redirecting to your dashboard...`);
+            
+            // Redirect to dashboard
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 500);
+        }
         
     } catch (error) {
         console.error('Error processing Google Sign-In:', error);
-        alert('Failed to sign in with Google. Please try again.');
+        alert('Failed to sign in with Google. Please try again. Error: ' + error.message);
     }
 }
 
@@ -230,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // SIGN IN FORM VALIDATION & SUBMISSION
     // ============================================
 
-    loginForm.addEventListener('submit', (e) => {
+    loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const email = document.getElementById('loginEmail').value.trim();
@@ -261,22 +262,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
-            // Simulate successful login
-            console.log('Login Data:', { email, password });
-            
-            // Store user data in localStorage
-            const userData = {
-                email: email,
-                firstName: email.split('@')[0], // Extract name from email for demo
-                loginTime: new Date().toISOString()
-            };
-            localStorage.setItem('styloUserData', JSON.stringify(userData));
-            localStorage.setItem('styloAuthToken', 'demo-token-' + Date.now());
-            
-            alert('Login successful! Redirecting to dashboard...');
-            
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
+            try {
+                // Call backend API
+                const response = await apiCall(API_CONFIG.ENDPOINTS.LOGIN, 'POST', {
+                    email,
+                    password
+                });
+                
+                if (response.success) {
+                    // Store user data and token
+                    localStorage.setItem('styloUserData', JSON.stringify(response.user));
+                    localStorage.setItem('styloAuthToken', response.token);
+                    
+                    alert('Login successful! Redirecting to dashboard...');
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Login failed: ' + error.message);
+            }
         }
     });
 
@@ -303,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // SIGN UP FORM VALIDATION & SUBMISSION
     // ============================================
 
-    registerForm.addEventListener('submit', (e) => {
+    registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const firstName = document.getElementById('firstName').value.trim();
@@ -385,23 +391,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
-            // Simulate successful registration
-            console.log('Registration Data:', { firstName, lastName, email, password });
-            
-            // Store user data in localStorage
-            const userData = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                registrationTime: new Date().toISOString()
-            };
-            localStorage.setItem('styloUserData', JSON.stringify(userData));
-            localStorage.setItem('styloAuthToken', 'demo-token-' + Date.now());
-            
-            alert('Account created successfully! Redirecting to your dashboard...');
-            
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
+            try {
+                // Call backend API
+                const response = await apiCall(API_CONFIG.ENDPOINTS.REGISTER, 'POST', {
+                    firstName,
+                    lastName,
+                    email,
+                    password
+                });
+                
+                if (response.success) {
+                    // Store user data and token
+                    localStorage.setItem('styloUserData', JSON.stringify(response.user));
+                    localStorage.setItem('styloAuthToken', response.token);
+                    
+                    alert('Account created successfully! Redirecting to your dashboard...');
+                    
+                    // Redirect to dashboard
+                    window.location.href = 'dashboard.html';
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Registration failed: ' + error.message);
+            }
         }
     });
 
