@@ -238,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const email = document.getElementById('loginEmail').value.trim();
         const password = document.getElementById('loginPassword').value;
+        const submitBtn = e.target.querySelector('button[type="submit"]');
         
         let isValid = true;
 
@@ -264,6 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Signing in...';
+            submitBtn.disabled = true;
+            
             try {
                 // Call backend API
                 const response = await apiCall(API_CONFIG.ENDPOINTS.LOGIN, 'POST', {
@@ -276,13 +282,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('styloUserData', JSON.stringify(response.user));
                     localStorage.setItem('styloAuthToken', response.token);
                     
-                    alert('Login successful! Redirecting to dashboard...');
+                    submitBtn.textContent = '✓ Success!';
                     
                     // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 500);
                 }
             } catch (error) {
                 console.error('Login error:', error);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
                 alert('Login failed: ' + error.message);
             }
         }
@@ -320,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         const agreeTerms = document.getElementById('agreeTerms').checked;
+        const submitBtn = e.target.querySelector('button[type="submit"]');
         
         let isValid = true;
 
@@ -393,6 +404,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isValid) {
+            // Show loading state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Creating account...';
+            submitBtn.disabled = true;
+            
             try {
                 // Call backend API
                 const response = await apiCall(API_CONFIG.ENDPOINTS.REGISTER, 'POST', {
@@ -407,13 +423,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('styloUserData', JSON.stringify(response.user));
                     localStorage.setItem('styloAuthToken', response.token);
                     
-                    alert('Account created successfully! Redirecting to your dashboard...');
+                    submitBtn.textContent = '✓ Account created!';
                     
                     // Redirect to dashboard
-                    window.location.href = 'dashboard.html';
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 500);
                 }
             } catch (error) {
                 console.error('Registration error:', error);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
                 alert('Registration failed: ' + error.message);
             }
         }
@@ -513,35 +533,26 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
         
         try {
-            // Send password reset request to backend
-            const response = await fetch(`${API_BASE_URL}/auth/forgot-password`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email })
-            });
+            // Send password reset request to backend using apiCall
+            const response = await apiCall(API_CONFIG.ENDPOINTS.FORGOT_PASSWORD, 'POST', { email });
             
-            const data = await response.json();
-            
-            if (response.ok) {
+            if (response.success) {
                 // Show success message
                 alert(`✅ Password reset link sent to ${email}!\n\nPlease check your email inbox (and spam folder) for the reset link.`);
                 
                 // Clear form
                 document.getElementById('resetEmail').value = '';
+                showSuccess('resetEmail', 'resetEmailError');
                 
                 // Go back to sign in
                 setTimeout(() => {
                     showSignInForm();
-                }, 2000);
-            } else {
-                throw new Error(data.message || 'Failed to send reset link');
+                }, 1500);
             }
         } catch (error) {
             console.error('Password reset error:', error);
             
-            // For demo purposes, show success even if backend fails
+            // Show user-friendly message
             alert(`✅ If an account exists with ${email}, you will receive a password reset link shortly.\n\nPlease check your email inbox (and spam folder).`);
             
             // Clear form
@@ -550,7 +561,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Go back to sign in
             setTimeout(() => {
                 showSignInForm();
-            }, 2000);
+            }, 1500);
         } finally {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;

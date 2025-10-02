@@ -6,12 +6,15 @@ const API_CONFIG = {
         LOGIN: '/auth/login',
         GOOGLE_AUTH: '/auth/google',
         VERIFY_TOKEN: '/auth/verify',
+        FORGOT_PASSWORD: '/auth/forgot-password',
+        RESET_PASSWORD: '/auth/reset-password',
         USER_PROFILE: '/user/profile',
         UPDATE_PROFILE: '/user/profile'
-    }
+    },
+    TIMEOUT: 10000  // 10 seconds timeout
 };
 
-// Helper function to make API calls
+// Helper function to make API calls with timeout
 async function apiCall(endpoint, method = 'GET', data = null, requiresAuth = false) {
     const url = `${API_CONFIG.BASE_URL}${endpoint}`;
     
@@ -37,7 +40,14 @@ async function apiCall(endpoint, method = 'GET', data = null, requiresAuth = fal
     }
 
     try {
+        // Add timeout to prevent long waits
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), API_CONFIG.TIMEOUT);
+        options.signal = controller.signal;
+
         const response = await fetch(url, options);
+        clearTimeout(timeoutId);
+        
         const result = await response.json();
 
         if (!response.ok) {
@@ -46,6 +56,9 @@ async function apiCall(endpoint, method = 'GET', data = null, requiresAuth = fal
 
         return result;
     } catch (error) {
+        if (error.name === 'AbortError') {
+            throw new Error('Request timeout - please check your connection');
+        }
         console.error('API Error:', error);
         throw error;
     }
