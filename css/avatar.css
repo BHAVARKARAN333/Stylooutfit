@@ -6,13 +6,25 @@
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    padding: 3rem 0;
+    padding: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    #avatar-creation {
+        padding: 1rem 0;
+    }
 }
 
 .container-fluid {
     max-width: 1600px;
     margin: 0 auto;
     padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 0 1rem;
+    }
 }
 
 /* Loader */
@@ -35,12 +47,40 @@
     100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* --- MAIN LAYOUT: 3 COLUMNS --- */
+/* --- MAIN LAYOUT: RESPONSIVE GRID --- */
 .avatar-main-layout {
     display: grid;
     grid-template-columns: 280px 1fr 320px;
-    gap: 2rem;
-    margin-bottom: 3rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Tablet Layout */
+@media (max-width: 1200px) {
+    .avatar-main-layout {
+        grid-template-columns: 250px 1fr 280px;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .avatar-main-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .avatar-sidebar,
+    .outfit-recommendation {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .avatar-main-layout {
+        gap: 1rem;
+    }
 }
 
 /* --- LEFT SIDEBAR: My Avatar Profile --- */
@@ -48,14 +88,21 @@
     background: white;
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     height: fit-content;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .avatar-sidebar {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
 }
 
 .avatar-sidebar:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-sidebar h2 {
@@ -115,13 +162,32 @@
 .avatar-display-section {
     background: white;
     border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-display-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .avatar-display-section {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .avatar-display-section {
+        padding: 1rem;
+    }
 }
 
 .avatar-display-section::before {
@@ -149,6 +215,7 @@
 
 #avatar-canvas-container {
     width: 100%;
+    max-width: 500px;
     height: 700px;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     border-radius: 20px;
@@ -158,6 +225,27 @@
     position: relative;
     box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
     overflow: hidden;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+    #avatar-canvas-container {
+        max-width: 100%;
+        height: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    #avatar-canvas-container {
+        height: 500px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #avatar-canvas-container {
+        height: 400px;
+    }
 }
 
 #avatarCanvas {
@@ -168,29 +256,53 @@
 
 
 .avatar-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
-    margin-top: 2rem;
+    gap: 1rem;
+    z-index: 10;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .avatar-controls {
+        bottom: 10px;
+        gap: 0.5rem;
+    }
 }
 
 .control-btn {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    border: none;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-size: 1.5rem;
+    border: 2px solid #6366f1;
+    background: white;
+    color: #6366f1;
+    font-size: 1.3rem;
     cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .control-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 1.2rem;
+    }
 }
 
 .control-btn:hover {
-    transform: scale(1.15) rotate(15deg);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    background: #6366f1;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .control-btn:active {
@@ -202,14 +314,21 @@
     background: white;
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     height: fit-content;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .outfit-recommendation {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
 }
 
 .outfit-recommendation:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 .outfit-recommendation h2 {
@@ -272,7 +391,26 @@
     background: white;
     border-radius: 20px;
     padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ai-outfits-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .ai-outfits-section {
+        padding: 1.5rem;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ai-outfits-section {
+        padding: 1.25rem;
+    }
 }
 
 .ai-outfits-section h2 {
@@ -317,8 +455,14 @@
     flex: 0 0 170px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     position: relative;
+}
+
+@media (max-width: 480px) {
+    .outfit-card {
+        flex: 0 0 140px;
+    }
 }
 
 .outfit-card:hover {
@@ -350,7 +494,16 @@
     border-radius: 16px;
     border: 3px solid #fff;
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 480px) {
+    .outfit-card img {
+        width: 140px;
+        height: 180px;
+        border-radius: 12px;
+        border-width: 2px;
+    }
 }
 
 .outfit-card:hover img {
@@ -377,22 +530,58 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
     z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .avatar-form-modal {
+        padding: 1rem;
+    }
 }
 
 .modal-content {
     background: white;
-    border-radius: 16px;
+    border-radius: 20px;
     max-width: 800px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        border-radius: 16px;
+        max-height: 95vh;
+    }
 }
 
 .modal-header {
@@ -401,6 +590,15 @@
     align-items: center;
     padding: 2rem;
     border-bottom: 1px solid #e0e0e0;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+@media (max-width: 768px) {
+    .modal-header {
+        padding: 1.5rem;
+        border-radius: 16px 16px 0 0;
+    }
 }
 
 .modal-header h2 {
@@ -416,16 +614,36 @@
     background: #f0f0f0;
     font-size: 1.5rem;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .close-modal:hover {
-    background: #e0e0e0;
+    background: #ff4444;
+    color: white;
     transform: rotate(90deg);
+}
+
+.close-modal:active {
+    transform: rotate(90deg) scale(0.9);
 }
 
 .modal-body {
     padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .modal-body {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-body {
+        padding: 1rem;
+    }
 }
 
 /* --- Form Section (Left) --- */
@@ -467,6 +685,13 @@
     gap: 1rem;
     margin-bottom: 1rem;
 }
+
+@media (max-width: 480px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+}
 .input-row:last-child {
     margin-bottom: 0;
 }
@@ -487,23 +712,50 @@
 .form-input {
     width: 100%;
     padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     background-color: #fff;
+}
+
+@media (max-width: 480px) {
+    .form-input {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
 }
 .form-input:focus {
     outline: none;
-    border-color: var(--primary-accent, #4169E1);
-    box-shadow: 0 0 0 4px rgba(65, 105, 225, 0.1);
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
 }
 
 .btn-full-width {
     width: 100%;
     padding: 16px;
     font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-full-width:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-full-width:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    .btn-full-width {
+        padding: 14px;
+        font-size: 1rem;
+    }
 }
 
 /* --- Progress Bar --- */
