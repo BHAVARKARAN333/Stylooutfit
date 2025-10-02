@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Your 3D Avatar - StyloOutfit</title>
-    <meta name="description" content="Build a highly-detailed 3D avatar with precise body measurements, face photo upload, and style preferences on StyloOutfit." />
+    <title>Create 3D Fashion Avatar Online Free - Virtual Try-On | StyloOutfit</title>
+    <meta name="description" content="Create your 3D fashion avatar online free! Build personalized avatar with body measurements, try outfits virtually, and get AI outfit recommendations. Best virtual fitting room experience!" />
+    <meta name="keywords" content="3D fashion avatar online, create 3D avatar for fashion, virtual try-on outfits free, body type outfit visualizer, 3D avatar fashion, online outfit try on, virtual fitting room, AI wardrobe assistant, personalized avatar, StyloOutfit" />
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BJ22N9EDJ"></script>
@@ -15,9 +16,21 @@
       gtag('config', 'G-3BJ22N9EDJ');
     </script>
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://stylooutfit.in/avatar.html" />
+    <meta property="og:title" content="Create 3D Fashion Avatar Online Free - StyloOutfit" />
+    <meta property="og:description" content="Create your 3D fashion avatar and try outfits virtually! Free virtual fitting room with AI recommendations." />
+    <meta property="og:image" content="https://stylooutfit.in/assets/images/avatar-og.jpg" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Create 3D Fashion Avatar Online Free" />
+    <meta name="twitter:description" content="Build your 3D avatar and try outfits virtually!" />
+    
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="./assets/images/SO.png" />
-    <link rel="shortcut icon" type="image/svg+xml" href="./assets/images/SO.png" />
+    <link rel="icon" type="image/svg+xml" href="./assets/images/SO.svg" />
+    <link rel="shortcut icon" type="image/svg+xml" href="./assets/images/SO.svg" />
     
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/avatar.css" />
@@ -40,12 +53,101 @@
     </header>
 
     <main id="avatar-creation">
-        <div class="container">
-            <div class="avatar-grid-container">
-                <div class="avatar-form-section">
+        <div class="container-fluid">
+            <div class="avatar-main-layout">
+                <!-- Left Sidebar: My Avatar Profile -->
+                <aside class="avatar-sidebar">
+                    <h2>My Avatar</h2>
+                    <div class="avatar-profile-card">
+                        <div class="profile-avatar">
+                            <img src="https://ui-avatars.com/api/?name=User&size=80&background=6366f1&color=fff" alt="Profile" id="profileAvatar">
+                        </div>
+                        <h3 id="profileName">Your Name</h3>
+                        <p class="profile-desc">Create your 3D avatar to see personalized outfit recommendations</p>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-full-width" id="openAvatarForm">
+                        ✨ Create/Edit Avatar
+                    </button>
+                </aside>
+                
+                <!-- Center: 3D Avatar Display -->
+                <div class="avatar-display-section">
+                    <div class="avatar-canvas-wrapper">
+                        <div class="loader" id="loader" style="display: none;"></div>
+                        <div id="avatar-canvas-container">
+                            <!-- Default 3D Avatar -->
+                            <canvas id="avatarCanvas"></canvas>
+                        </div>
+                        <div class="avatar-controls">
+                            <button id="rotate-left-btn" class="control-btn" type="button">⟲</button>
+                            <button id="save-avatar-btn" class="btn btn-accent">Save Avatar</button>
+                            <button id="rotate-right-btn" class="control-btn" type="button">⟳</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Sidebar: AI Recommended Outfit -->
+                <aside class="outfit-recommendation">
+                    <h2>AI Recommended Outfit</h2>
+                    <div class="recommended-outfit-card">
+                        <div class="outfit-image">
+                            <img src="https://picsum.photos/seed/outfit1/300/400" alt="Recommended Outfit">
+                        </div>
+                        <h3>Casual Chic</h3>
+                        <p class="outfit-description">Perfect for everyday wear. This outfit matches your body type and style preferences.</p>
+                        <button class="btn btn-primary btn-full-width">TRY ON & BUY</button>
+                    </div>
+                </aside>
+            </div>
+            
+            <!-- Bottom: AI Outfits Carousel -->
+            <div class="ai-outfits-section">
+                <h2>AI Outfits</h2>
+                <div class="outfits-carousel">
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit1/150/200" alt="Outfit 1">
+                        <p>Casual</p>
+                    </div>
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit2/150/200" alt="Outfit 2">
+                        <p>Business</p>
+                    </div>
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit3/150/200" alt="Outfit 3">
+                        <p>Party</p>
+                    </div>
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit4/150/200" alt="Outfit 4">
+                        <p>Sports</p>
+                    </div>
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit5/150/200" alt="Outfit 5">
+                        <p>Formal</p>
+                    </div>
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit6/150/200" alt="Outfit 6">
+                        <p>Summer</p>
+                    </div>
+                    <div class="outfit-card">
+                        <img src="https://picsum.photos/seed/outfit7/150/200" alt="Outfit 7">
+                        <p>Winter</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Avatar Creation Form Modal -->
+            <div class="avatar-form-modal" id="avatarFormModal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Create Your 3D Avatar</h2>
+                        <button class="close-modal" id="closeModal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="avatar-form-section">
                     <div class="form-header">
-                        <h1>Your Style, Your Avatar</h1>
-                        <p>Complete your profile to generate a hyper-realistic 3D model.</p>
+                        <h1>Create Your 3D Fashion Avatar</h1>
+                        <p>Build your personalized 3D avatar and try outfits virtually! Free virtual fitting room with AI-powered outfit recommendations.</p>
                     </div>
 
                     <div class="progress-bar-container">
@@ -80,14 +182,6 @@
                         <button type="submit" class="btn btn-primary btn-full-width">Generate My Avatar</button>
                     </form>
                 </div>
-
-                <div class="avatar-preview-section">
-                    <div class="loader" id="loader"></div>
-                    <div id="avatar-canvas-container"></div>
-                    <div class="controls-container">
-                        <button id="rotate-left-btn" class="btn btn-outline" type="button" aria-label="Rotate Left">⟲</button>
-                        <button id="save-avatar-btn" class="btn btn-accent" type="button">Save Avatar</button>
-                        <button id="rotate-right-btn" class="btn btn-outline" type="button" aria-label="Rotate Right">⟳</button>
                     </div>
                 </div>
             </div>
@@ -99,15 +193,285 @@
         </div>
     </footer>
 
+    <!-- Three.js Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     
+    <!-- App Scripts -->
     <script src="./js/mobile-menu.js"></script>
     <script src="./js/auth-state.js"></script>
-    <script src="./js/avatar.js"></script>
+    <script src="./js/avatar-generator.js"></script>
+    
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+      
+      // ============================================
+      // DEFAULT 3D AVATAR LOADER
+      // ============================================
+      
+      let scene, camera, renderer, avatar, controls;
+      
+      function initDefaultAvatar() {
+        const container = document.getElementById('avatar-canvas-container');
+        const canvas = document.getElementById('avatarCanvas');
+        
+        if (!container || !canvas) return;
+        
+        // Scene
+        scene = new THREE.Scene();
+        scene.background = null; // Transparent
+        
+        // Camera
+        const aspect = container.clientWidth / container.clientHeight;
+        camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 1000);
+        camera.position.set(0, 1.5, 2.5);
+        
+        // Renderer
+        renderer = new THREE.WebGLRenderer({ 
+          canvas: canvas,
+          antialias: true,
+          alpha: true 
+        });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.shadowMap.enabled = true;
+        
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        directionalLight.position.set(5, 10, 5);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+        
+        const fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+        fillLight.position.set(-5, 5, -5);
+        scene.add(fillLight);
+        
+        // Orbit Controls
+        if (typeof THREE.OrbitControls !== 'undefined') {
+          controls = new THREE.OrbitControls(camera, renderer.domElement);
+          controls.enableDamping = true;
+          controls.dampingFactor = 0.05;
+          controls.target.set(0, 0.8, 0);
+          controls.enableZoom = true;
+          controls.minDistance = 1.5;
+          controls.maxDistance = 4;
+          controls.enablePan = false;
+          controls.maxPolarAngle = Math.PI / 2;
+        }
+        
+        // Add ground circle
+        const groundGeometry = new THREE.CircleGeometry(1.5, 32);
+        const groundMaterial = new THREE.MeshStandardMaterial({ 
+          color: 0xffffff,
+          roughness: 0.8,
+          metalness: 0.2,
+          opacity: 0.3,
+          transparent: true
+        });
+        const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.y = 0;
+        ground.receiveShadow = true;
+        scene.add(ground);
+        
+        // Load default avatar model (Ready.Player.Me sample)
+        loadDefaultAvatarModel();
+        
+        // Animation loop
+        animate();
+        
+        // Handle resize
+        window.addEventListener('resize', onWindowResize);
+      }
+      
+      function loadDefaultAvatarModel() {
+        const loader = new THREE.GLTFLoader();
+        
+        // Ready.Player.Me sample avatar (female casual)
+        const avatarUrl = 'https://models.readyplayer.me/64bfa683f3c6a7026d73c8f5.glb';
+        
+        loader.load(
+          avatarUrl,
+          (gltf) => {
+            avatar = gltf.scene;
+            
+            // Position avatar at ground level
+            const box = new THREE.Box3().setFromObject(gltf.scene);
+            const height = box.max.y - box.min.y;
+            avatar.position.set(0, -box.min.y, 0);
+            
+            avatar.castShadow = true;
+            avatar.receiveShadow = true;
+            
+            // Scale to fit
+            const targetHeight = 1.7;
+            const scale = targetHeight / height;
+            avatar.scale.set(scale, scale, scale);
+            
+            scene.add(avatar);
+            
+            // Center camera on avatar
+            camera.lookAt(0, 0.8, 0);
+            if (controls) {
+              controls.target.set(0, 0.8, 0);
+              controls.update();
+            }
+          },
+          (progress) => {
+            console.log('Loading avatar:', (progress.loaded / progress.total * 100) + '%');
+          },
+          (error) => {
+            console.error('Error loading avatar:', error);
+            // Fallback: Create simple avatar
+            createFallbackAvatar();
+          }
+        );
+      }
+      
+      function createFallbackAvatar() {
+        // Simple fallback avatar using basic shapes
+        const group = new THREE.Group();
+        
+        // Body
+        const bodyGeometry = new THREE.CylinderGeometry(0.3, 0.35, 1.2, 32);
+        const bodyMaterial = new THREE.MeshStandardMaterial({ color: 0x4a90e2 });
+        const body = new THREE.Mesh(bodyGeometry, bodyMaterial);
+        body.position.y = 0.6;
+        group.add(body);
+        
+        // Head
+        const headGeometry = new THREE.SphereGeometry(0.25, 32, 32);
+        const headMaterial = new THREE.MeshStandardMaterial({ color: 0xffdbac });
+        const head = new THREE.Mesh(headGeometry, headMaterial);
+        head.position.y = 1.5;
+        group.add(head);
+        
+        // Arms
+        const armGeometry = new THREE.CylinderGeometry(0.08, 0.08, 0.8, 16);
+        const armMaterial = new THREE.MeshStandardMaterial({ color: 0x4a90e2 });
+        
+        const leftArm = new THREE.Mesh(armGeometry, armMaterial);
+        leftArm.position.set(-0.4, 0.8, 0);
+        leftArm.rotation.z = 0.3;
+        group.add(leftArm);
+        
+        const rightArm = new THREE.Mesh(armGeometry, armMaterial);
+        rightArm.position.set(0.4, 0.8, 0);
+        rightArm.rotation.z = -0.3;
+        group.add(rightArm);
+        
+        // Legs
+        const legGeometry = new THREE.CylinderGeometry(0.1, 0.08, 0.9, 16);
+        const legMaterial = new THREE.MeshStandardMaterial({ color: 0x2c3e50 });
+        
+        const leftLeg = new THREE.Mesh(legGeometry, legMaterial);
+        leftLeg.position.set(-0.15, -0.45, 0);
+        group.add(leftLeg);
+        
+        const rightLeg = new THREE.Mesh(legGeometry, legMaterial);
+        rightLeg.position.set(0.15, -0.45, 0);
+        group.add(rightLeg);
+        
+        avatar = group;
+        scene.add(avatar);
+      }
+      
+      function centerCamera() {
+        if (!avatar) return;
+        
+        const box = new THREE.Box3().setFromObject(avatar);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        
+        camera.lookAt(center);
+        
+        if (controls) {
+          controls.target.copy(center);
+          controls.update();
+        }
+      }
+      
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        if (controls) {
+          controls.update();
+        }
+        
+        // Slow rotation
+        if (avatar) {
+          avatar.rotation.y += 0.002;
+        }
+        
+        renderer.render(scene, camera);
+      }
+      
+      function onWindowResize() {
+        const container = document.getElementById('avatar-canvas-container');
+        if (!container) return;
+        
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      }
+      
+      // Initialize on load
+      if (typeof THREE !== 'undefined') {
+        window.addEventListener('load', initDefaultAvatar);
+      }
+      
+      // ============================================
+      // MODAL & UI FUNCTIONALITY
+      // ============================================
+      
+      // Modal functionality
+      const modal = document.getElementById('avatarFormModal');
+      const openBtn = document.getElementById('openAvatarForm');
+      const closeBtn = document.getElementById('closeModal');
+      
+      openBtn.addEventListener('click', () => {
+        modal.style.display = 'flex';
+      });
+      
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+      
+      // Close modal on outside click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+      
+      // Rotate buttons
+      document.getElementById('rotate-left-btn')?.addEventListener('click', () => {
+        if (avatar) avatar.rotation.y += Math.PI / 4;
+      });
+      
+      document.getElementById('rotate-right-btn')?.addEventListener('click', () => {
+        if (avatar) avatar.rotation.y -= Math.PI / 4;
+      });
+      
+      // Swatch selection
+      document.querySelectorAll('.swatch').forEach(swatch => {
+        swatch.addEventListener('click', function() {
+          this.parentElement.querySelectorAll('.swatch').forEach(s => {
+            s.classList.remove('selected');
+          });
+          this.classList.add('selected');
+        });
+      });
+      
+      // Select first swatch by default
+      document.querySelectorAll('.swatches').forEach(swatchGroup => {
+        const firstSwatch = swatchGroup.querySelector('.swatch');
+        if (firstSwatch) firstSwatch.classList.add('selected');
+      });
     </script>
 </body>
 </html>
